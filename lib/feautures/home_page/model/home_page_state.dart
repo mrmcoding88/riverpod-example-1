@@ -1,3 +1,6 @@
+import 'package:flutter/foundation.dart';
+
+@immutable
 class HomePageState {
   final String title;
   final int counter;
@@ -9,7 +12,7 @@ class HomePageState {
   }
 
   static const initial = HomePageState(
-    title: 'testing',
+    title: 'Initial title',
     counter: 0,
   );
 }

@@ -12,7 +12,6 @@ class HomePage extends HookConsumerWidget {
     final homePageNotifier = ref.read(homePageNotifierProvider.notifier);
 
     final titleController = useTextEditingController();
-    final titleValue = useValueListenable(titleController).text;
 
     return Scaffold(
       appBar: AppBar(
@@ -26,7 +25,10 @@ class HomePage extends HookConsumerWidget {
             controller: titleController,
           ),
           IconButton(
-            onPressed: () => homePageNotifier.changeTitle(titleValue),
+            onPressed: () {
+              homePageNotifier.changeTitle(titleController.text);
+              titleController.clear();
+            },
             icon: const Icon(Icons.published_with_changes),
           ),
           const SizedBox(
@@ -36,7 +38,8 @@ class HomePage extends HookConsumerWidget {
             'You have pushed the button this many times:',
           ),
           Text(
-            '${homePageState.counter}',
+            // '${homePageState.counter}',
+            'test',
             style: Theme.of(context).textTheme.headlineMedium,
           ),
         ],

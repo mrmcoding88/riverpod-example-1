@@ -7,14 +7,35 @@ part 'home_page_notifier.g.dart';
 class HomePageNotifier extends _$HomePageNotifier {
   @override
   HomePageState build() {
+
     return HomePageState.initial;
   }
 
   void increment() {
-    state = state.copyWith(counter: state.counter + 1);
+    // state = state.copyWith(counter: state.counter + 1);
   }
 
   void changeTitle(String newTitle) {
-    state = state.copyWith(title: newTitle);
+    // state = state.copyWith(title: newTitle);
   }
 }
+
+// class TestNotifier extends Notifier<HomePageState> {
+//   @override
+//   HomePageState build() {
+//     return HomePageState.initial;
+//   }
+
+//   void increment() {
+//     state = state.copyWith(counter: state.counter + 1);
+//   }
+
+//   void changeTitle(String newTitle) {
+//     state = state.copyWith(title: newTitle);
+//   }
+// }
+
+// /// Provider for [TestNotifier].
+// final testNotifierProvide = NotifierProvider<TestNotifier, HomePageState>(() {
+//   return TestNotifier();
+// });
