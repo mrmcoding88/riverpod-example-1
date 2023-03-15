@@ -6,12 +6,12 @@ part of 'home_page_notifier.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$homePageNotifierHash() => r'4e3f2410cad134e72079dcf7804682e93796c6e4';
+String _$homePageNotifierHash() => r'3a86205e16f0a5831cbac3a3895f9aa332854703';
 
 /// See also [HomePageNotifier].
 @ProviderFor(HomePageNotifier)
 final homePageNotifierProvider =
-    AutoDisposeNotifierProvider<HomePageNotifier, int>.internal(
+    AutoDisposeNotifierProvider<HomePageNotifier, HomePageState>.internal(
   HomePageNotifier.new,
   name: r'homePageNotifierProvider',
   debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
@@ -21,5 +21,5 @@ final homePageNotifierProvider =
   allTransitiveDependencies: null,
 );
 
-typedef _$HomePageNotifier = AutoDisposeNotifier<int>;
+typedef _$HomePageNotifier = AutoDisposeNotifier<HomePageState>;
 // ignore_for_file: unnecessary_raw_strings, subtype_of_sealed_class, invalid_use_of_internal_member, do_not_use_environment, prefer_const_constructors, public_member_api_docs, avoid_private_typedef_functions
