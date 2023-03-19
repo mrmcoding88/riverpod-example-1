@@ -8,14 +8,11 @@ class HomePage extends HookConsumerWidget {
   const HomePage({super.key});
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final homePageState = ref.watch(homePageNotifierProvider);
-    final homePageNotifier = ref.read(homePageNotifierProvider.notifier);
-
     final titleController = useTextEditingController();
 
     return Scaffold(
       appBar: AppBar(
-        title: Text(homePageState.title),
+        title: const TitleWidget(),
       ),
       body: Center(
           child: Column(
@@ -26,7 +23,9 @@ class HomePage extends HookConsumerWidget {
           ),
           IconButton(
             onPressed: () {
-              homePageNotifier.changeTitle(titleController.text);
+              ref
+                  .read(homePageNotifierProvider.notifier)
+                  .changeTitle(titleController.text);
               titleController.clear();
             },
             icon: const Icon(Icons.published_with_changes),
@@ -37,18 +36,47 @@ class HomePage extends HookConsumerWidget {
           const Text(
             'You have pushed the button this many times:',
           ),
-          Text(
-            // '${homePageState.counter}',
-            'test',
-            style: Theme.of(context).textTheme.headlineMedium,
-          ),
+          const CounterWidget(),
         ],
       )),
       floatingActionButton: FloatingActionButton(
-        onPressed: homePageNotifier.increment,
+        onPressed: ref.read(homePageNotifierProvider.notifier).increment,
         tooltip: 'Increment',
         child: const Icon(Icons.add),
       ),
     );
+  }
+}
+
+class CounterWidget extends StatelessWidget {
+  const CounterWidget({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Consumer(builder: (context, ref, _) {
+      final counter =
+          ref.watch(homePageNotifierProvider.select((value) => value.counter));
+      return Text(
+        '$counter',
+        style: Theme.of(context).textTheme.headlineMedium,
+      );
+    });
+  }
+}
+
+class TitleWidget extends StatelessWidget {
+  const TitleWidget({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Consumer(builder: (context, ref, _) {
+      final title =
+          ref.watch(homePageNotifierProvider.select((value) => value.title));
+      return Text(title);
+    });
   }
 }
